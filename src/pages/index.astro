@@ -18,10 +18,10 @@ const title = "Pókemon static | Home"
 
 	<h1 class="text-3xl">Listado de pokemones</h1>
 	<hr>
-	<section aria-label="Listado de pokemones" class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4">
+	<section aria-label="Listado de pokemones" class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4">
 {
-			data.results.map((pokemon) => (
-				<PokemonCard name={pokemon.name} url={pokemon.url} />
+			data.results.map(({name, url}) => (
+				<PokemonCard name={name} url={url} />
 			))
 		}
 	</section>
