@@ -21,17 +21,20 @@ class:list={[
 ]}
 >
   <img src={urlImage} alt={`Imagen de ${name}`}
+  transition:name={`${name}-image`}
   class:list={[
     {
       "w-48 h-48": isBig,
-      "w-24 h-24": !isBig
+      "w-32 h-32": !isBig
     }
     
   ]}
   >
-<span class:list={[
+<span 
+transition:name={`${name}-texxt`}
+class:list={[
   "capitalize", {
-    "text-3xl": isBig,
+    "text-4xl  text-blue-300": isBig,
   }
 ]} >#{id} {name}</span>
 </a>
