@@ -1,0 +1,16 @@
+---
+export interface Props {
+  name: string;
+  url: string;}
+
+  const { name, url } = Astro.props;
+  const id = url.split("/")[url.split("/").length - 2];
+  
+
+---
+<div>
+  <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} alt={`Imagen de ${name}`}>
+
+
+<span>{name}</span>
+</div>
