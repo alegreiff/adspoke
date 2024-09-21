@@ -38,8 +38,8 @@ image={imgSrc}
         class="text-blue-500">Regresar</button>
         </div>
     <button id="btn-favorite" class="ml-4 text-pink-700" data-name={name}data-id={id} >
-      <Icon name="heart-outline" size={50}></Icon>
-      <Icon class="hidden" name="heart-full" size={50}></Icon>
+      <Icon data-outline name="heart-outline" size={50}></Icon>
+      <Icon data-full class="hidden" name="heart-full" size={50}></Icon>
     </button>
         
     </div>
@@ -65,12 +65,41 @@ image={imgSrc}
   }
 
   const handlePageLoad = () => {
+let favoritePokemons: FavoritePokemon[] = JSON.parse(localStorage.getItem('favorites') ?? '[]');
+
     const btnFavorite = document.querySelector("#btn-favorite") as HTMLButtonElement;
     if(!btnFavorite) return;
-  const name = btnFavorite.dataset.name;
-  const id = btnFavorite.dataset.id;
+
+  const name = btnFavorite.dataset.name ?? '';
+  const id = btnFavorite.dataset.id ?? '';
+  const heartOutline = btnFavorite.querySelector("[data-outline]") as HTMLElement;
+  const heartFull = btnFavorite.querySelector("[data-full]") as HTMLElement;
+
+  const isFavorite = favoritePokemons.some((fav) => fav.name === name );
+  if(isFavorite) {
+      console.log("SIII")
+     heartOutline.classList.toggle("hidden");
+     heartFull.classList.toggle("hidden");
+    }else {
+      console.log("NOUP")
+    }
+  
+
+  const toggleFavorite = () => {
+    const isFavorite = favoritePokemons.some((fav) => fav.name === name );
+    if(isFavorite) {
+favoritePokemons = favoritePokemons.filter((fav) => fav.name !== name);
+    }else {
+      favoritePokemons.push({id: +id, name});
+    }
+    localStorage.setItem('favorites', JSON.stringify(favoritePokemons));
+
+  }
+  
   btnFavorite.addEventListener("click", () => {
-    console.log({name, id})
+    heartOutline.classList.toggle("hidden");
+    heartFull.classList.toggle("hidden");
+    toggleFavorite();
   })
   }
 
