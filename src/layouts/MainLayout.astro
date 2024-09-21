@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import { siteInfo}  from '../const/site-info'
+import NavBar from '@components/shared/NavBar.astro';
 export interface Props {
   title?: string;
 	image?: string;
@@ -28,8 +29,9 @@ const {title= siteInfo.title, image, description=siteInfo.description } = Astro.
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="bg-slate-800 text-slate-100 m-auto max-w-3xl" >
-		<main class="mt-10">
+	<body class="bg-slate-800 text-slate-100 " >
+		<NavBar />
+		<main class="mt-10 m-auto max-w-3xl ">
 			<slot />
 		</main>
 	</body>
