@@ -1,0 +1,21 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import Title from "@components/shared/Title.astro";
+import { Counter } from "@components/Counter";
+import type { init } from "astro/virtual-modules/prefetch.js";
+const counterValue = 20;
+---
+
+<MainLayout title="Favoritos">
+
+<Title>Islas</Title>
+
+<div class="bg-teal-800 h-[140px]">
+
+</div>
+<Counter 
+transition:persist="counter"
+
+client:visible initValue={counterValue}/>
+
+</MainLayout>
