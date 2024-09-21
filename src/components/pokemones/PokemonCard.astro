@@ -8,7 +8,7 @@ export interface Props {
 
   const { name, url, isBig=false,  } = Astro.props;
   const id = url.split("/").at(-2)
-  const urlImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+  const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
 
 ---
@@ -16,22 +16,24 @@ export interface Props {
 <a 
 href={`/pokemons/${name}`}
 class:list={[
-  "mt-8 rounded flex flex-col justify-center items-center p-2 ", {
-    "border bg-pink-500/50" : !isBig,
-    "bg-sky-800" : isBig
-  }
+  `rounded flex flex-col justify-center items-center p-2`,
+  {
+    border: !isBig,
+  },
 ]}
 >
-  <img src={urlImage} alt={`Imagen de ${name}`}
-  transition:name={`${name}-image`}
-  class:list={[
-    {
-      "w-96 h-96": isBig,
-      "w-32 h-32": !isBig
-    }
-    
-  ]}
-  >
+<img
+transition:name={`${name}-image`}
+class:list={[
+  {
+    'w-26 h-26': isBig,
+    'w-22 h-22': !isBig,
+  },
+]}
+src={imageSrc}
+alt={name}
+/>
+
 <span 
 transition:name={`${name}-texxt`}
 class:list={[
